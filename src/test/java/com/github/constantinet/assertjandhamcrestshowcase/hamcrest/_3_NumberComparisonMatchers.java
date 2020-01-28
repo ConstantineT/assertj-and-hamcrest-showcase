@@ -54,8 +54,7 @@ public class _3_NumberComparisonMatchers {
         // when
         final int idNumber = person.getIdNumber();
 
-        // TODO: check if person id is between 101 and 200 inclusively
-        // HINT: use allOf and appropriate matchers
-        throw new AssertionError();
+        // then
+        assertThat(idNumber, allOf(greaterThanOrEqualTo(101), lessThanOrEqualTo(200)));
     }
 }

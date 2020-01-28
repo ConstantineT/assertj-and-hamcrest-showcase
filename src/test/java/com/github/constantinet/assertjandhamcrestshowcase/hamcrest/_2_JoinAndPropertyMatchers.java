@@ -57,8 +57,10 @@ public class _2_JoinAndPropertyMatchers {
                 .build();
 
         // then
-        // TODO: check if NONE of the names is null
-        // HINT: use an appropriate join matcher and notNullValue()
-        throw new AssertionError();
+        assertThat(person, allOf(
+                hasProperty("firstName", notNullValue()),
+                hasProperty("middleName", notNullValue()),
+                hasProperty("lastName", notNullValue())
+        ));
     }
 }

@@ -73,8 +73,7 @@ public class _4_CollectionMatchers {
         final Map<Integer, List<String>> childrenNameLengthMap = person.getChildrenNameLengthMap();
 
         // then
-        // TODO: check if theres is 7->["Michael"] entry
-        // HINT: create a matcher extending TypeSafeMatcher or TypeSafeDiagnosingMatcher
-        throw new AssertionError();
+        assertThat(childrenNameLengthMap, new _4b_MapEntryMatcher(7, Arrays.asList(MICHAEL)));
+
     }
 }

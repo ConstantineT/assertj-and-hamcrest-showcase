@@ -59,8 +59,9 @@ public class _2_JoinAndPropertyAssertions {
                 .build();
 
         // then
-        // TODO: check if NONE of the names is null
-        // HINT: you can use isNot/anyOf or is/allOf depending on your Condition implementations
-        throw new AssertionError();
+        assertThat(person).is(allOf(
+                new Condition<>(person -> person.getFirstName() != null, "firstName not null"),
+                new Condition<>(person -> person.getMiddleName() != null, "middleName not null"),
+                new Condition<>(person -> person.getLastName() != null, "lastName not null")));
     }
 }

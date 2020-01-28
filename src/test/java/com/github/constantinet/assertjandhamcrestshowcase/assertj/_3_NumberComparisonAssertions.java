@@ -58,8 +58,6 @@ public class _3_NumberComparisonAssertions {
         final int idNumber = person.getIdNumber();
 
         // then
-        // TODO: check if person id is between 101 and 200 inclusively
-        // HINT: look for an appropriate method
-        throw new AssertionError();
+        assertThat(idNumber).isBetween(101, 200);
     }
 }

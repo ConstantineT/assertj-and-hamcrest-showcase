@@ -80,8 +80,6 @@ public class _1_BasicAndStringAssertions {
         final String initials = person.getInitials();
 
         // then
-        // TODO: check if initials do not end with a dot
-        // HINT: look for an appropriate method
-        throw new AssertionError();
+        assertThat(initials).doesNotEndWith(".");
     }
 }

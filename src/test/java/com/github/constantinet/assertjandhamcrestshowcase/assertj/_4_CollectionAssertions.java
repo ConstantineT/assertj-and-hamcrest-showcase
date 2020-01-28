@@ -72,8 +72,6 @@ public class _4_CollectionAssertions {
         final Map<Integer, List<String>> childrenNameLengthMap = person.getChildrenNameLengthMap();
 
         // then
-        // TODO: check if theres is 7->["Michael"] entry
-        // HINT: look for an appropriate method
-        throw new AssertionError();
+        assertThat(childrenNameLengthMap).hasEntrySatisfying(7, Arrays.asList(MICHAEL)::equals);
     }
 }
