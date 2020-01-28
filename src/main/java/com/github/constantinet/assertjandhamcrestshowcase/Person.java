@@ -1,80 +1,27 @@
 package com.github.constantinet.assertjandhamcrestshowcase;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
-/**
- * Mutable representation of a person.
- */
+
 public final class Person {
 
     private final int idNumber;
+    private final String firstName;
+    private final String middleName;
+    private final String lastName;
+    private final List<String> childrenNames;
 
-    private String firstName;
-    private String middleName;
-    private String lastName;
-    private double height;
-
-    private Person spouse;
-    private final Set<String> childrenNames = new HashSet<>();
-
-    public Person(final int idNumber) {
-        this.idNumber = idNumber;
-    }
-
-    public Person(final int idNumber, final String firstName, final String lastName) {
-        Objects.requireNonNull(firstName);
-        Objects.requireNonNull(lastName);
-        if (firstName.isEmpty() || lastName.isEmpty()) {
-            throw new IllegalArgumentException("Names can not be empty");
-        }
-
-        this.idNumber = idNumber;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public Person(final int idNumber, final String firstName, final String middleName, final String lastName) {
-        Objects.requireNonNull(firstName);
-        Objects.requireNonNull(middleName);
-        Objects.requireNonNull(lastName);
-        if (firstName.isEmpty() || middleName.isEmpty() || lastName.isEmpty()) {
-            throw new IllegalArgumentException("Names can not be empty");
-        }
-
+    private Person(final int idNumber,
+                  final String firstName,
+                  final String middleName,
+                  final String lastName,
+                  final List<String> childrenNames) {
         this.idNumber = idNumber;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
-    }
-
-    /**
-     * Sets height.
-     *
-     * @param height height in cm and mm
-     * @return this for chaining
-     */
-    public Person setHeight(final double height) {
-        if (height <= 0.0) {
-            throw new IllegalArgumentException("Height must be positive");
-        }
-
-        this.height = height;
-
-        return this;
-    }
-
-    /**
-     * Add a person as a spouse.
-     *
-     * @param person person
-     * @return this for chaining
-     */
-    public Person setSpouse(final Person person) {
-        Objects.requireNonNull(person);
-
-        this.spouse = person;
-
-        return this;
+        this.childrenNames = childrenNames;
     }
 
     /**
@@ -114,15 +61,6 @@ public final class Person {
     }
 
     /**
-     * Returns height.
-     *
-     * @return height
-     */
-    public double getHeight() {
-        return height;
-    }
-
-    /**
      * Returns initials.
      *
      * @return initials from first name and lastname
@@ -136,21 +74,23 @@ public final class Person {
     }
 
     /**
-     * Returns spouse.
-     *
-     * @return Optional of spouse or empty optional
-     */
-    public Optional<Person> getSpouse() {
-        return Optional.ofNullable(spouse);
-    }
-
-    /**
      * Returns unmodifiable view of children names.
      *
      * @return set of {@link Person}
      */
-    public Set<String> getChildrenNames() {
-        return Collections.unmodifiableSet(childrenNames);
+    public List<String> getChildrenNames() {
+        return Collections.unmodifiableList(childrenNames);
+    }
+
+    /**
+     * Returns map of number of letters to list of children names with this name length.
+     *
+     * @return set of {@link Person}
+     */
+    public Map<Integer, List<String>> getChildrenNameLengthMap() {
+        return childrenNames
+                .stream()
+                .collect(Collectors.groupingBy(String::length));
     }
 
     @Override
@@ -173,9 +113,49 @@ public final class Person {
                 ", firstName='" + firstName + '\'' +
                 ", middleName='" + middleName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", height=" + height +
-                ", spouse=" + spouse +
                 ", childrenNames=" + childrenNames +
                 '}';
+    }
+
+
+    public static final class PersonBuilder {
+
+        private int idNumber;
+        private String firstName;
+        private String middleName;
+        private String lastName;
+        private List<String> childrenNames = new ArrayList<>();
+
+        private PersonBuilder(final int idNumber) {
+            this.idNumber = idNumber;
+        }
+
+        public static PersonBuilder aPerson(final int idNumber) {
+            return new PersonBuilder(idNumber);
+        }
+
+        public PersonBuilder withFirstName(final String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        public PersonBuilder withMiddleName(final String middleName) {
+            this.middleName = middleName;
+            return this;
+        }
+
+        public PersonBuilder withLastName(final String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public PersonBuilder withChildrenNames(final List<String> childrenNames) {
+            this.childrenNames = childrenNames;
+            return this;
+        }
+
+        public Person build() {
+            return new Person(idNumber, firstName, middleName, lastName, childrenNames);
+        }
     }
 }

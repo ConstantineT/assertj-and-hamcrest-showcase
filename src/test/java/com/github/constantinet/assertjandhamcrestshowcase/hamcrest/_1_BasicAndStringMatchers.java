@@ -8,6 +8,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.emptyOrNullString;
 
+
 public class _1_BasicAndStringMatchers {
 
     private static final int ID = 101;
@@ -19,7 +20,10 @@ public class _1_BasicAndStringMatchers {
     @BeforeEach
     public void setUp() {
         // given
-        person = new Person(ID, FIRST_NAME, LAST_NAME);
+        person = Person.PersonBuilder.aPerson(ID)
+                .withFirstName(FIRST_NAME)
+                .withLastName(LAST_NAME)
+                .build();
     }
 
     @Test
@@ -73,6 +77,8 @@ public class _1_BasicAndStringMatchers {
         final String initials = person.getInitials();
 
         // then
-        throw new AssertionError(); // TODO: check if initials do not end with a dot
+        // TODO: check if initials do not end with a dot
+        // HINT: look for an appropriate matcher
+        throw new AssertionError();
     }
 }

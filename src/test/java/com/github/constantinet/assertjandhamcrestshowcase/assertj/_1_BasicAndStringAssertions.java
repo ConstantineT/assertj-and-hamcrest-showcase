@@ -1,6 +1,7 @@
 package com.github.constantinet.assertjandhamcrestshowcase.assertj;
 
 import com.github.constantinet.assertjandhamcrestshowcase.Person;
+import com.github.constantinet.assertjandhamcrestshowcase.Person.PersonBuilder;
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,11 @@ public class _1_BasicAndStringAssertions {
     @BeforeEach
     public void setUp() {
         // given
-        person = new Person(ID, FIRST_NAME, LAST_NAME);
+        person = PersonBuilder
+                .aPerson(ID)
+                .withFirstName(FIRST_NAME)
+                .withLastName(LAST_NAME)
+                .build();
     }
 
     @Test
@@ -75,6 +80,8 @@ public class _1_BasicAndStringAssertions {
         final String initials = person.getInitials();
 
         // then
-        throw new AssertionError(); // TODO: check if initials do not end with a dot
+        // TODO: check if initials do not end with a dot
+        // HINT: look for an appropriate method
+        throw new AssertionError();
     }
 }
