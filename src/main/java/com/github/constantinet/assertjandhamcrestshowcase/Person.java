@@ -13,10 +13,10 @@ public final class Person {
     private final List<String> childrenNames;
 
     private Person(final int idNumber,
-                  final String firstName,
-                  final String middleName,
-                  final String lastName,
-                  final List<String> childrenNames) {
+                   final String firstName,
+                   final String middleName,
+                   final String lastName,
+                   final List<String> childrenNames) {
         this.idNumber = idNumber;
         this.firstName = firstName;
         this.middleName = middleName;
