@@ -60,7 +60,7 @@ public class _2_JoinAndPropertyAssertions {
 
         // then
         // TODO: check if NONE of the names is null
-        // HINT: you can use isNot/allOf or is/allOf depending on your Condition implementations
+        // HINT: you can use isNot/anyOf or is/allOf depending on your Condition implementations
         throw new AssertionError();
     }
 }

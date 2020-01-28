@@ -50,11 +50,11 @@ public class _3_NumberComparisonMatchers {
     }
 
     @Test
-    public void testPersonIdIsBetween100And200() {
+    public void testPersonIdIsBetween101And200() {
         // when
         final int idNumber = person.getIdNumber();
 
-        // TODO: check if person id is between 100 and 200
+        // TODO: check if person id is between 101 and 200 inclusively
         // HINT: use allOf and appropriate matchers
         throw new AssertionError();
     }
