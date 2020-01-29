@@ -120,7 +120,7 @@ public final class Person {
 
     public static final class PersonBuilder {
 
-        private int idNumber;
+        private final int idNumber;
         private String firstName;
         private String middleName;
         private String lastName;

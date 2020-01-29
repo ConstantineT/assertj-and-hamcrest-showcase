@@ -42,8 +42,7 @@ public class _2_JoinAndPropertyMatchers {
         // then
         assertThat(person, anyOf(
                 hasProperty("firstName", is(MICHAEL)),
-                hasProperty("middleName", is(MICHAEL)),
-                hasProperty("lastName", is(MICHAEL))
+                hasProperty("middleName", is(MICHAEL))
         ));
     }
 
