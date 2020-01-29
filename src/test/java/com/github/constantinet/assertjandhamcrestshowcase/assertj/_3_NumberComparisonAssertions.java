@@ -11,9 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class _3_NumberComparisonAssertions {
 
     private static final int ID = 101;
-    private static final double HEIGHT = 180.23;
-    private static final int SPOUSE_ID = 102;
-    private static final double SPOUSE_HEIGHT = 165.23;
 
     private Person person;
 
